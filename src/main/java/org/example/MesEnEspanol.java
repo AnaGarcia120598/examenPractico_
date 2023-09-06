@@ -1,29 +1,31 @@
 package org.example;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MesEnEspanol {
-    public static String obtenerMesEnEspanol(String fechaStr) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", new Locale("es", "ES"));
-        Date fecha = sdf.parse(fechaStr);
-        SimpleDateFormat mesFormat = new SimpleDateFormat("MMMM", new Locale("es", "ES"));
-        return mesFormat.format(fecha);
+    public static String obtenerMesEnEspanol(int mes) {
+        DateFormatSymbols dfs = new DateFormatSymbols(new Locale("es", "ES"));
+        String[] nombresMeses = dfs.getMonths();
+
+        // Ajustamos el valor del mes para que esté en el rango adecuado (1-12)
+        if (mes >= 1 && mes <= 12) {
+            return nombresMeses[mes - 1];
+        } else {
+            return "Mes inválido";
+        }
     }
 
     public static void main(String[] args) {
-        try {
-            String fecha1 = "01/01/2001";
-            String fecha2 = "01/02/2001";
+        int mes1 = 1; // Enero
+        int mes2 = 2; // Febrero
 
-            String resultado1 = obtenerMesEnEspanol(fecha1);
-            String resultado2 = obtenerMesEnEspanol(fecha2);
+        String resultado1 = obtenerMesEnEspanol(mes1);
+        String resultado2 = obtenerMesEnEspanol(mes2);
 
-            System.out.println("Resultado 1: " + resultado1); // Deberá ser "Enero"
-            System.out.println("Resultado 2: " + resultado2); // Deberá ser "Febrero"
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Resultado 1: " + resultado1); // Deberá ser "enero"
+        System.out.println("Resultado 2: " + resultado2); // Deberá ser "febrero"
     }
 }
+
+

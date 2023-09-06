@@ -24,8 +24,7 @@ public class LongitudArreglo {
                 contadorPares++;
             }
         }
-
-        // Crear un nuevo arreglo con el tamaño necesario para los elementos pares
+// Crear un nuevo arreglo con el tamaño necesario para los elementos pares
         int[] resultado = new int[contadorPares];
         int indiceResultado = 0;
 
@@ -36,6 +35,7 @@ public class LongitudArreglo {
                 indiceResultado++;
             }
         }
+
 
         return resultado;
     }
